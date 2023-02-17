@@ -1,14 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Categories from "./pages/Category";
+import StoreEdit from "./components/store/storeEdit/StoreEdit";
+import ProductList from "./pages/ProductList";
+import { SnackbarProvider } from "./shared/snackbar/SnackbarContext";
+import Footer from "./shared/Footer";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <SnackbarProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/stores" element={<App />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/stores/:id" element={<StoreEdit />} />
+      </Routes>
+    </BrowserRouter>
+    <Footer></Footer>
+  </SnackbarProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
